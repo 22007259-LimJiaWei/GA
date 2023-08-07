@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Bootstrap CSS Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Transfer</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            position: absolute;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-left: 2px solid #bbb;
+        }
+
+        footer {
+            margin-top: 47%;
+            position: absolute;
+            height: 45px;
+            width: 100%;
+            background-color: black;
+        }
+
+        .overview {
+            padding: 0;
+            background-color: #aca3a3;
+            position: absolute;
+            width: 100%;
+            margin-top: 50px;
+            height: 30px;
+            list-style-type: none;
+        }
+
+        .Summary-form {
+            width: 25%;
+            height: 400px;
+            margin: auto;
+            margin-top: 150px;
+            margin-right: 60px;
+            float: right;
+            position: relative;
+            border: 3px solid #ff0000;
+            background: #c8c8c8;
+        }
+
+        .details {
+            position: absolute;
+            margin-top: 170px;
+            margin-left: 340px;
+            font-size: 20px;
+        }
+
+        .Recipients {
+            margin-top: 80px;
+            text-align: center;
+            width: 20%;
+            height: 90%;
+            float: left;
+            position: absolute;
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li style="font-size: 35px; color: blue; margin-left: 10px;">JWD</li>
+        <li style="margin-left: 10px; "><a style="padding: 14px 16px;" href=AfterHome.html>Home</a></li>
+        <li><a style="padding: 14px 16px;" href=AfterContact.html>Contact Us</a></li>
+        <li style="float: right; margin-right: 10px; background-color: red;"><a style="padding: 14px 16px;"
+                href=index.html>Logout</a></li>
+    </ul>
+    <div class="overview">
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Overview.html>My Account</a>
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Transfer.html>Transfer</a>
+
+    </div>
+    <div class="Recipients">
+        <input
+            style="width: 50%; background-color: red; color: white; float: left; margin-top: 150px; margin-left: 100px;"
+            class="LocalTransfer" type="submit" value="Local Transfer">
+
+        <input
+            style="width: 50%; background-color: red; color: white; float: left; margin-top: 40px; margin-left: 100px;"
+            class="OverseasTransfer" type="submit" value="Overseas Transfer">
+    </div>
+
+    <div class="details">
+        <p>Enter Receiver's Name</p>
+        <p><input style="width: 300px;" type="text" name="Name" required></p>
+
+        <p>Amound Send</p>
+        <p><input style="width: 300px;" name="SendAmount" placeholder="Send Amount"></p>
+
+        <hr>
+
+        <p><input style="width: 40%; background-color: red; color: white;" class="transfer-button" type="submit"
+                value="Next">
+        </p>
+    </div>
+
+    <div class="Summary-form">
+        <p style="font-size: 32px; margin-left: 10px;">Summary</p>
+
+        <hr>
+        <p style="margin-left: 10px;">Transfer amount: <input style="margin-left: 5px;" readonly> </p>
+        <p style="margin-left: 10px;">Transfer total: <input style="margin-left: 27px;" readonly> </p>
+        <p style="margin-left: 10px;">Total to receiver: <input style="margin-left: 7px;" readonly> </p>
+    </div>
+
+
+    <footer>
+        <a href="https://www.youtube.com/">
+            <img src="C369_GA_Image/youtube.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+        <a href="https://www.facebook.com/">
+            <img src="C369_GA_Image/facebook.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+        <a href="https://www.linkedin.com/feed/">
+            <img src="C369_GA_Image/linked.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+    </footer>
+
+    <script>
+
+        function validateForm() {
+            var receiverNameInput = document.getElementsByName("Name")[0];
+            var sendAmountInput = document.getElementsByName("SendAmount")[0];
+
+            var receiverName = receiverNameInput.value.trim();
+            var sendAmount = sendAmountInput.value.trim();
+
+            if (receiverName === "") {
+                alert("Please enter name");
+                return false;
+            } else if (sendAmount === "") {
+                alert("Please enter amount to send.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // Function to calculate the transfer total and total to the receiver
+        function calculateTransfer() {
+            var sendAmountInput = document.getElementsByName("SendAmount")[0];
+
+            var sendAmount = parseFloat(sendAmountInput.value);
+
+            var transferTotal = sendAmount;
+            updateSummary(sendAmount, transferTotal);
+        }
+
+        // Function to get the country rate based on the selected country
+        function getCountryRate(country) {
+            // You can implement your logic here to fetch the exchange rate based on the selected country.
+            // For this example, we'll use some predefined rates.
+            var countryRates = {
+                Singapore: 1.00,
+            };
+            return countryRates[country] || 1; // Default rate is 1 if the country rate is not found.
+        }
+
+        // Function to update the summary inputs
+        function updateSummary(sendAmount, transferTotal) {
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 5px']").value = sendAmount.toFixed(2);
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 27px']").value = transferTotal.toFixed(2);
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 7px']").value = transferTotal.toFixed(2);
+        }
+
+
+        function saveDataToLocalStorage(transfertoData) {
+            const existingData = JSON.parse(localStorage.getItem('transfertoData')) || [];
+            existingData.push(transfertoData);
+            localStorage.setItem('transfertoData', JSON.stringify(existingData));
+        }
+
+        // Event listeners for form submission and send amount changes
+        document.querySelector(".transfer-button").addEventListener("click", function (event) {
+            event.preventDefault();
+            if (validateForm()) {
+                var receiverNameInput = document.getElementsByName("Name")[0];
+                var sendAmountInput = document.getElementsByName("SendAmount")[0];
+
+                var receiverName = receiverNameInput.value.trim();
+                var sendAmount = parseFloat(sendAmountInput.value);
+
+                // Create an object with the name and sendAmount properties
+                var transfertoData = {
+                    Name: receiverName,
+                    sendAmount: sendAmount
+                };
+
+                // Save the data to local storage
+                saveDataToLocalStorage(transfertoData);
+
+                calculateTransfer();
+                location.href = "ChooseLocalTransfer1.html";
+            }
+        });
+
+        function GotoLocal() {
+            location.href = "Transfer.html";
+        }
+
+        function GotoOverseas() {
+            location.href = "OverseasTransfer.html";
+        }
+
+        var LocalButton = document.querySelector('.LocalTransfer');
+        LocalButton.addEventListener('click', GotoLocal);
+
+        var OverseasButton = document.querySelector('.OverseasTransfer');
+        OverseasButton.addEventListener('click', GotoOverseas);
+
+        document.getElementsByName("SendAmount")[0].addEventListener("input", calculateTransfer);
+    </script>
+    <!--Bootstrap JS Link-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

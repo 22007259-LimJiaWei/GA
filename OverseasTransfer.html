@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Bootstrap CSS Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Transfer</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            position: absolute;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-left: 2px solid #bbb;
+        }
+
+        footer {
+            margin-top: 47%;
+            position: absolute;
+            height: 45px;
+            width: 100%;
+            background-color: black;
+        }
+
+        .overview {
+            padding: 0;
+            background-color: #aca3a3;
+            position: absolute;
+            width: 100%;
+            margin-top: 50px;
+            height: 30px;
+            list-style-type: none;
+        }
+
+        .Summary-form {
+            width: 25%;
+            height: 400px;
+            margin: auto;
+            margin-top: 150px;
+            margin-right: 60px;
+            float: right;
+            position: relative;
+            border: 3px solid #ff0000;
+            background: #c8c8c8;
+        }
+
+        .details {
+            position: absolute;
+            margin-top: 170px;
+            margin-left: 340px;
+            font-size: 20px;
+        }
+
+        .Recipients {
+            margin-top: 80px;
+            text-align: center;
+            width: 20%;
+            height: 90%;
+            float: left;
+            position: absolute;
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li style="font-size: 35px; color: blue; margin-left: 10px;">JWD</li>
+        <li style="margin-left: 10px; "><a style="padding: 14px 16px;" href=AfterHome.html>Home</a></li>
+        <li><a style="padding: 14px 16px;" href=AfterContact.html>Contact Us</a></li>
+        <li style="float: right; margin-right: 10px; background-color: red;"><a style="padding: 14px 16px;"
+                href=index.html>Logout</a></li>
+    </ul>
+    <div class="overview">
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Overview.html>My Account</a>
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Transfer.html>Transfer</a>
+
+    </div>
+    <div class="Recipients">
+        <input
+            style="width: 50%; background-color: red; color: white; float: left; margin-top: 150px; margin-left: 100px;"
+            class="LocalTransfer" type="submit" value="Local Transfer">
+
+        <input
+            style="width: 50%; background-color: red; color: white; float: left; margin-top: 40px; margin-left: 100px;"
+            class="OverseasTransfer" type="submit" value="Overseas Transfer">
+    </div>
+
+    <div class="details">
+        <p>Enter Receiver Name</p>
+        <p><input style="width: 300px;" type="text" name="Name" required></p>
+
+        <p>Select Receiver's Country</p>
+        <select name="country" style="width: 300px;">
+            <option value="Malaysia">Malaysia</option>
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+        </select>
+
+
+        <a style="border-left: none; margin-top: 30px;"><input name="SendAmount" placeholder="Send Amount"> <img
+                src="C369_GA_Image/GA2.jpg" style="width: 40px; height: 40px; margin-left: 100px;"> <input
+                name="ReceiveAmount" style="margin-left: 100px;" placeholder="Receive Amount"></a>
+
+        <hr>
+
+        <p><input style="width: 30%; background-color: red; color: white;" class="transfer-button" type="submit"
+                value="Next">
+        </p>
+    </div>
+
+    <div class="Summary-form">
+        <p style="font-size: 32px; margin-left: 10px;">Summary</p>
+
+        <hr>
+        <p style="margin-left: 10px;">Transfer amount: <input style="margin-left: 5px;" readonly> </p>
+        <p style="margin-left: 10px;">Transfer fee: <input style="margin-left: 38px;" readonly>
+        </p>
+        <p style="margin-left: 10px;">Transfer total: <input style="margin-left: 27px;" readonly> </p>
+        <p style="margin-left: 10px;">Total to receiver: <input style="margin-left: 7px;" readonly> </p>
+    </div>
+
+
+
+
+
+    <footer>
+        <a href="https://www.youtube.com/">
+            <img src="C369_GA_Image/youtube.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+        <a href="https://www.facebook.com/">
+            <img src="C369_GA_Image/facebook.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+        <a href="https://www.linkedin.com/feed/">
+            <img src="C369_GA_Image/linked.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+    </footer>
+
+    <script>
+
+        function validateForm() {
+            var receiverNameInput = document.getElementsByName("Name")[0];
+            var sendAmountInput = document.getElementsByName("SendAmount")[0];
+
+            var receiverName = receiverNameInput.value.trim();
+            var sendAmount = sendAmountInput.value.trim();
+
+            if (receiverName === "") {
+                alert("Please enter name");
+                return false;
+            } else if (sendAmount === "") {
+                alert("Please enter amount to send.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // Function to calculate the transfer total and total to the receiver
+        function calculateTransfer() {
+            var sendAmountInput = document.getElementsByName("SendAmount")[0];
+            var receiveAmountInput = document.getElementsByName("ReceiveAmount")[0];
+            var selectedCountry = document.getElementsByName("country")[0].value;
+
+            var sendAmount = parseFloat(sendAmountInput.value);
+            var countryRate = getCountryRate(selectedCountry);
+
+            var transferFee = calculateTransferFee(sendAmount);
+            var transferTotal = sendAmount + transferFee;
+            var totalToReceiver = sendAmount * countryRate;
+
+            receiveAmountInput.value = totalToReceiver.toFixed(2);
+
+            updateSummary(sendAmount, transferFee, transferTotal, totalToReceiver);
+
+            // Store the receiver name and transfer total in local storage
+            var receiverNameInput = document.getElementsByName("Name")[0];
+            var transferTotalInput = document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 27px']");
+
+            var receiverName = receiverNameInput.value.trim();
+            var transferTotal = transferTotalInput.value;
+
+            // Create a data object to store the values
+            var transferData = {
+                receiverName: receiverName,
+                transferTotal: transferTotal
+            };
+
+            // Convert the data object to a JSON string and store it in local storage with the key "transferData"
+            localStorage.setItem("transferData", JSON.stringify(transferData));
+
+        }
+
+        // Function to get the country rate based on the selected country
+        function getCountryRate(country) {
+            // You can implement your logic here to fetch the exchange rate based on the selected country.
+            // For this example, we'll use some predefined rates.
+            var countryRates = {
+                Malaysia: 3.44,
+                China: 5.0,
+                Japan: 106.06
+            };
+            return countryRates[country] || 1; // Default rate is 1 if the country rate is not found.
+        }
+
+        // Function to calculate the transfer fee (you can adjust the calculation logic as needed)
+        function calculateTransferFee(amount) {
+            // For this example, let's assume the transfer fee is 2% of the send amount.
+            return amount * 0.02;
+        }
+
+        // Function to update the summary inputs
+        function updateSummary(sendAmount, transferFee, transferTotal, totalToReceiver) {
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 5px']").value = sendAmount.toFixed(2);
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 38px']").value = transferFee.toFixed(2);
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 27px']").value = transferTotal.toFixed(2);
+            document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 7px']").value = totalToReceiver.toFixed(2);
+        }
+
+        function getStoredTransferData() {
+            // Retrieve the stored transfer data from local storage
+            var transferDataJSON = localStorage.getItem("   ");
+            return transferDataJSON ? JSON.parse(transferDataJSON) : null;
+        }
+
+        // Event listeners for form submission and send amount changes
+        document.querySelector(".transfer-button").addEventListener("click", function (event) {
+            event.preventDefault();
+            if (validateForm()) {
+                calculateTransfer();
+                location.href = "ChooseOverseasTransfer.html"
+            }
+        });
+
+        function updateSummaryInputs(transferData) {
+            // Update the summary inputs with the stored data
+            if (transferData) {
+                var receiverNameInput = document.getElementsByName("Name")[0];
+                var transferTotalInput = document.querySelector(".Summary-form input[readonly=''][style*='margin-left: 27px']");
+
+                receiverNameInput.value = transferData.receiverName;
+                transferTotalInput.value = transferData.transferTotal;
+            }
+        }
+
+        function GotoLocal() {
+            location.href = "Transfer.html";
+        }
+
+        function GotoOverseas() {
+            location.href = "OverseasTransfer.html";
+        }
+
+        var LocalButton = document.querySelector('.LocalTransfer');
+        LocalButton.addEventListener('click', GotoLocal);
+
+        var OverseasButton = document.querySelector('.OverseasTransfer');
+        OverseasButton.addEventListener('click', GotoOverseas);
+
+        // Check if there is stored transfer data and update the summary inputs
+        var storedTransferData = getStoredTransferData();
+        updateSummaryInputs(storedTransferData);
+
+        document.getElementsByName("SendAmount")[0].addEventListener("input", calculateTransfer);
+    </script>
+    <!--Bootstrap JS Link-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

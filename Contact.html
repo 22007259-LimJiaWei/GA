@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-image: url(C369_GA_Image/GA1.jpeg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .login-form {
+            text-align: center;
+            vertical-align: middle;
+            width: 60%;
+            height: 500px;
+            margin: auto;
+            margin-top: 150px;
+            float: left;
+            position: relative;
+            border: 3px solid #ff0000;
+            background: #ffffff;
+        }
+
+        input {
+            width: 40%;
+            margin-left: 100px;
+
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            position: fixed;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border-left: 2px solid #bbb;
+        }
+
+        .active {
+            background-color: #04AA6D;
+
+        }
+
+        .flex-container {
+            display: flex;
+        }
+
+        .album {
+            width: 60%;
+        }
+
+        .album_description {
+            width: 40%;
+
+        }
+
+        label {
+            margin-left: 100px;
+            font-size: 24px;
+            color: red;
+        }
+
+        img {
+            width: 15%;
+            vertical-align: middle;
+            height: 40px;
+            float: left;
+            margin-left: 20px;
+            margin-top: 40px;
+        }
+
+        .box {
+            margin-top: 200px;
+            position: static;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li style="font-size: 35px; color: blue; margin-left: 10px;">JWD</li>
+        <li style="margin-left: 10px;"><a href=Home.html>Home</a></li>
+        <li><a class="active" href=Contact.html>Contact Us</a></li>
+    </ul>
+
+
+
+    <div class="flex-container">
+        <div class="album">
+
+            <header style="margin-top: 90px; text-align: center; font-size: 42px;">Contact Us</header><br>
+
+            <label for="Name">Name</label>
+            <p><input type="text" name="Name" required></p>
+
+            <br>
+
+            <label for="email">Email</label>
+            <p><input type="email" name="email" required></p>
+
+            <br>
+
+            <label for="tel">Contact Number</label>
+            <p><input type="tel" name="Checktel" required></p>
+
+            <br>
+
+            <label for="Subject">Subject</label>
+            <p><input style="width: 600px; height: 100px;" type="text" name="Subject" required></p><br>
+
+            <p><input style="width: 20%; background-color: red; color: white;" type="submit" value="Submit"
+                    class="submit"></p>
+
+        </div>
+
+        <div class="album_description">
+            <div class="login-form">
+                <h2 style="margin-top: 20px;">Contact Details</h2>
+
+                <img src="C369_GA_Image/Mail.jpg">
+                <a href="mailto:22007259@MYRP.EDU.SG"
+                    style="color: black; float: left; color: blue; border-left: none;  margin-right: 1300px;">support@fintec.com</a>
+
+                <img src="C369_GA_Image/Phone">
+                <a href="callto:87551131"
+                    style="color: black; float: left; color: blue; border-left: none;  margin-right: 150px;">+1800 339
+                    6666</a>
+
+                <div class="box">
+                    <a href="https://www.youtube.com/"><img src="C369_GA_Image/youtube.jpg"></a>
+
+                    <a href="https://www.facebook.com/"><img src="C369_GA_Image/facebook.jpg"></a>
+
+                    <a href="https://www.linkedin.com/feed/"><img src="C369_GA_Image/linked.jpg"></a>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function isValidName(Name) {
+            // Define the regular expression pattern for a valid name
+            const namePattern = /^[A-Z][a-z]+$/;
+
+            // Test the input name against the pattern
+            return namePattern.test(Name);
+        }
+
+        // Function to validate email format
+        function validateEmail(email) {
+            // Regular expression pattern for email validation
+            var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return pattern.test(email);
+        }
+
+        function isValidPhoneNumber(Checktel) {
+            // Check if the phone number has exactly 8 digits and starts with 8 or 9
+            return /^[89]\d{7}$/.test(Checktel);
+        }
+
+        function checkCredentials() {
+            var NameInput = document.getElementsByName('Name')[0].value;
+            var emailInput = document.getElementsByName('email')[0].value;
+            var ContactInput = document.getElementsByName('Checktel')[0].value;
+            var SubjectInput = document.getElementsByName('Subject')[0].value;
+
+            if (NameInput.trim() === '' || emailInput.trim() === '' || ContactInput.trim() === '' || SubjectInput.trim() === '') {
+                alert('Please enter all fields.');
+                return;
+            }
+
+            if (!isValidName(NameInput)) {
+                alert('Please enter a valid Name (Start with an uppercase letter)');
+                return;
+            }
+
+            if (!validateEmail(emailInput)) {
+                alert('Invalid email format.');
+                return;
+            }
+
+            if (!isValidPhoneNumber(ContactInput)) {
+                alert('Please enter a valid 8-digit phone number that starts with 8 or 9.');
+                return;
+            }
+
+            alert('Submit successful, thank you for your feedback!');
+            document.getElementsByName('Name')[0].value = '';
+            document.getElementsByName('email')[0].value = '';
+            document.getElementsByName('Checktel')[0].value = '';
+            document.getElementsByName('Subject')[0].value = '';
+        }
+
+        var SubmitButton = document.querySelector('.submit');
+        SubmitButton.addEventListener('click', checkCredentials);
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

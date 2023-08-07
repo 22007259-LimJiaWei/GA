@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Reset PIN</title>
+    <style>
+        body {
+            background-image: url(C369_GA_Image/GA8.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .login-form {
+            text-align: center;
+            vertical-align: middle;
+            width: 60%;
+            height: 550px;
+            margin: auto;
+            margin-top: 100px;
+            position: relative;
+            border: 3px solid #ff0000;
+            background: #ffffff;
+        }
+
+        input {
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="login-form">
+            <b>
+                <h1 style="color: blue;">JWD</h1>
+            </b>
+
+            <hr>
+
+
+            <label for="test">NRIC</label>
+            <p><input type="text" name="checkNRIC" required></p>
+
+            <label for="tel">Contact Number</label>
+            <p>+65 <input style="width: 56%;" type="tel" name="Checktel" required></p>
+
+            <label for="PIN">Enter New PIN</label>
+            <p><input type="password" name="CheckPIN" required></p>
+
+            <label for="tel">Re-type New PIN</label>
+            <p><input type="password" name="CheckMatch" required></p>
+
+            <p><input style="width: 30%; background-color: red; color: white;" class="ResetPIN" type="submit"
+                    value="Reset">
+            </p>
+
+            <p><input style="width: 30%; background-color: red; color: white;" class="Backtohome" type="submit"
+                    value="Back to home">
+            </p>
+
+            <p><input style="width: 30%; background-color: red; color: white;" class="BacktoLogin" type="submit"
+                    value="Login">
+            </p>
+
+            <br>
+
+        </div>
+
+    </div>
+    <script>
+        function isValidNRIC(checkNRIC) {
+            // Check if the UID is at least 9 characters long
+            if (checkNRIC.length < 9) {
+                return false;
+            }
+
+            if (!/^[STFG]\d{7}[A-Z]$/i.test(checkNRIC)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function isValidPhoneNumber(phoneNumber) {
+            // Check if the phone number has exactly 8 digits and starts with 8 or 9
+            return /^[89]\d{7}$/.test(phoneNumber);
+        }
+
+        function isValidPIN(CheckFirstPIN) {
+            // Check if the PIN is exactly 6 digits long
+            if (CheckFirstPIN.length !== 6) {
+                return false;
+            }
+
+            // Check if the PIN contains only digits
+            if (!/^[0-9]+$/.test(CheckFirstPIN)) {
+                return false;
+            }
+
+            // If all conditions are satisfied, the PIN is valid
+            return true;
+        }
+
+        function checkCredentials() {
+            var NRICinput = document.getElementsByName('checkNRIC')[0].value;
+            var phoneNumberInput = document.getElementsByName('Checktel')[0].value;
+            var Newpassword = document.getElementsByName('CheckPIN')[0].value;
+            var retypePassword = document.getElementsByName('CheckMatch')[0].value;
+
+            if (NRICinput.trim() === '' || phoneNumberInput.trim() === '' || Newpassword.trim() === '' || retypePassword.trim() === '') {
+                alert('Please enter all fields.');
+                return;
+            }
+
+            if (!isValidNRIC(NRICinput)) {
+                alert("Please enter a valid Singapore NRIC (E.g. S1234567A or T1234567A).");
+                return;
+            }
+
+            if (!isValidPhoneNumber(phoneNumberInput)) {
+                alert('Please enter a valid 8-digit phone number that starts with 8 or 9.');
+                return;
+            }
+
+            if (!isValidPIN(Newpassword)) {
+                alert('Please enter a valid PIN (exactly 6 digits).');
+                return;
+            }
+
+            // Check if password is valid
+            if (retypePassword !== Newpassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Retrieve the existing user data from local storage
+            var userDataJSON = localStorage.getItem("userData");
+            if (!userDataJSON) {
+                alert("No user data found. Please sign up for an account.");
+                return;
+            }
+
+            // Parse the JSON data back to an array of objects
+            var userDataArray = JSON.parse(userDataJSON);
+
+            // Find the user data based on the provided NRIC and phone number
+            var userIndex = userDataArray.findIndex(entry => entry.NRIC === NRICinput && entry.phoneNumber === phoneNumberInput);
+
+            if (userIndex === -1) {
+                alert("No user data found for this NRIC and Phone Number. Please try again.");
+                return;
+            }
+
+            // Update only the PIN in the user data object
+            userDataArray[userIndex].PIN = retypePassword;
+
+            // Convert the updated user data to a JSON string
+            var updatedUserDataJSON = JSON.stringify(userDataArray);
+
+            // Save the updated JSON string back to local storage with the same key ("userData")
+            localStorage.setItem("userData", updatedUserDataJSON);
+
+            // For this demonstration, we'll redirect to a success page, but you can do anything here.
+            alert("Reset successful! PIN has been updated.");
+            location.href = "index.html";
+        }
+
+        function BackHome() {
+            location.href = "Home.html";
+        }
+
+        function BackLogin() {
+            location.href = "index.html";
+        }
+        // Add event listener to the login button
+        var ResetButton = document.querySelector('.ResetPIN');
+        ResetButton.addEventListener('click', checkCredentials);
+
+        var BackHomeButton = document.querySelector('.Backtohome');
+        BackHomeButton.addEventListener('click', BackHome);
+
+        var BackLoginPage = document.querySelector('.BacktoLogin');
+        BackLoginPage.addEventListener('click', BackLogin);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

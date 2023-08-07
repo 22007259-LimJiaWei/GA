@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Bootstrap CSS Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Add Local</title>
+    <style>
+        body {
+            background-color: rgb(211, 211, 211);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            position: absolute;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-left: 2px solid #bbb;
+        }
+
+        footer {
+            margin-top: 47%;
+            position: absolute;
+            height: 45px;
+            width: 100%;
+            background-color: black;
+        }
+
+        .overview {
+            padding: 0;
+            background-color: #aca3a3;
+            position: absolute;
+            width: 100%;
+            margin-top: 50px;
+            height: 30px;
+            list-style-type: none;
+        }
+
+        .album {
+            text-align: center;
+            width: 30%;
+        }
+
+        .album_description {
+            width: 70%;
+        }
+
+        .Recipients {
+            margin-top: 80px;
+            text-align: center;
+            width: 25%;
+            height: 90%;
+            float: left;
+            position: absolute;
+            border: 3px solid #ff0000;
+            background: #ffffff;
+        }
+
+        .details {
+            margin-top: 80px;
+            margin-left: 35%;
+            width: 55%;
+            position: absolute;
+            text-align: center;
+        }
+
+        input {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li style="font-size: 35px; color: blue; margin-left: 10px;">JWD</li>
+        <li style="margin-left: 10px; "><a style="padding: 14px 16px;" href=AfterHome.html>Home</a></li>
+        <li><a style="padding: 14px 16px;" href=AfterContact.html>Contact Us</a></li>
+        <li style="float: right; margin-right: 10px; background-color: red;"><a style="padding: 14px 16px;"
+                href=index.html>Logout</a></li>
+    </ul>
+    <div class="overview">
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Overview.html>My Account</a>
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Transfer.html>Transfer</a>
+    </div>
+
+    <div class="Recipients">
+        <input
+            style="width: 40%; background-color: red; color: white; float: left; margin-top: 100px; margin-left: 100px;"
+            class="BankAcc" type="submit" value="Bank Account">
+        <input
+            style="width: 40%; background-color: red; color: white; float: left; margin-top: 10px; margin-left: 100px;"
+            class="Mobile" type="submit" value="PayNow to mobile">
+        <input
+            style="width: 40%; background-color: red; color: white; float: left; margin-top: 10px; margin-left: 100px;"
+            class="NRIC" type="submit" value="PayNow to NRIC">
+    </div>
+
+
+    <div class="details">
+        <p style="font-size: 32px; text-align: center;">Enter Recipients's Details</p>
+        <p style="font-size: 24px; text-align: center; text-decoration: underline;">Enter Account Details</p>
+
+
+        <label for="tel">Enter recipient name</label>
+        <p>
+            <input type="tel" name="MobileNo" required>
+        </p>
+
+        <label for="text">Select Bank</label>
+        <p>
+            <select name="Bank" style="width: 50%;">
+                <option value="DBS">DBS</option>
+                <option value="OCBC">OCBC</option>
+                <option value="UOB">UOB</option>
+            </select>
+        </p>
+
+        <label for="text">Enter account no</label>
+        <p>
+            <input type="text" name="accounNum" required>
+        </p>
+
+        <p><input style="margin-top: 20px; width: 25%; background-color: red; color: white;" class="AddRecipient"
+                type="submit" value="Add"></p>
+    </div>
+
+    <footer>
+        <a href="https://www.youtube.com/">
+            <img src="C369_GA_Image/youtube.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+        <a href="https://www.facebook.com/">
+            <img src="C369_GA_Image/facebook.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+        <a href="https://www.linkedin.com/feed/">
+            <img src="C369_GA_Image/linked.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+        </a>
+    </footer>
+
+    <script>
+        function addLocalBank() {
+            location.href = "AddLocalBank.html";
+        }
+
+        function addLocalMob() {
+            location.href = "AddLocalMobile.html";
+        }
+
+        function addLocalNRIC() {
+            location.href = "AddLocalNRIC.html";
+        }
+
+
+        // Attach the addRecipient function to the "Add" button
+        var addRecipientButton = document.querySelector('.AddRecipient');
+        addRecipientButton.addEventListener('click', addRecipient);
+
+        var AddLocalBankButton = document.querySelector('.BankAcc');
+        AddLocalBankButton.addEventListener('click', addLocalBank);
+
+        var AddLocalMobButton = document.querySelector('.Mobile');
+        AddLocalMobButton.addEventListener('click', addLocalMob);
+
+        var AddLocalNRICButton = document.querySelector('.NRIC');
+        AddLocalNRICButton.addEventListener('click', addLocalNRIC);
+    </script>
+    <!--Bootstrap JS Link-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

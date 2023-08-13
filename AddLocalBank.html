@@ -2,6 +2,15 @@
 <html>
 
 <head>
+    <!--
+        I declare that this code was written by me. 
+        I will not copy or allow others to copy my code. 
+        I understand that copying code is considered as plagiarism.
+        Student Name:Lim Jia Wei
+        Student ID: 22007259
+        Class: C369-3D-E63C-A
+        Date/Time Last modified: 13/08/2023 11:30 AM
+        -->
     <!--Bootstrap CSS Link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Add Local</title>
@@ -116,7 +125,7 @@
 
         <label for="tel">Enter recipient name</label>
         <p>
-            <input type="tel" name="MobileNo" required>
+            <input type="tel" name="Name" required>
         </p>
 
         <label for="text">Select Bank</label>
@@ -165,10 +174,75 @@
             location.href = "AddLocalNRIC.html";
         }
 
+        function validateRecipientDetails() {
+            var recipientName = document.querySelector('input[name="Name"]').value;
+            var selectedBank = document.querySelector('select[name="Bank"]').value;
+            var accountNum = document.querySelector('input[name="accounNum"]').value;
 
-        // Attach the addRecipient function to the "Add" button
+            if (recipientName.trim() === "") {
+                alert("Please enter the recipient's name.");
+                return false;
+            }
+
+            if (selectedBank === "") {
+                alert("Please select a bank.");
+                return false;
+            }
+
+            // Validate account number based on selected bank
+            if (selectedBank === "DBS" && !/^\d{10}$/.test(accountNum)) {
+                alert("Invalid account number for DBS bank. Please enter a 10-digit number.");
+                return false;
+            } else if (selectedBank === "OCBC" && !/^\d{9}$/.test(accountNum)) {
+                alert("Invalid account number for OCBC bank. Please enter a 9-digit number.");
+                return false;
+            } else if (selectedBank === "UOB" && !/^\d{10}$/.test(accountNum)) {
+                alert("Invalid account number for UOB bank. Please enter a 10-digit number.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // Function to handle the "Add" button click event
+        function handleAddButtonClick() {
+            if (validateRecipientDetails()) {
+                var recipientName = document.querySelector('input[name="Name"]').value;
+                var selectedBank = document.querySelector('select[name="Bank"]').value;
+                var accountNum = document.querySelector('input[name="accounNum"]').value;
+
+
+                var recipients = {
+                    name: recipientName,
+                    bank: selectedBank,
+                    AccountNum: accountNum,
+                };
+
+                // Retrieve the existing mobile numbers from local storage
+                var recipientDataJSON = localStorage.getItem("recipientsData1");
+
+                // If there is no existing data, create a new array to store the mobile numbers
+                var recipientsData = recipientDataJSON ? JSON.parse(recipientDataJSON) : [];
+
+                // Append the new mobile number to the existing data array
+                recipientsData.push(recipients);
+
+                // Convert the updated mobile numbers array to a JSON string
+                var updatedrecipientsDataJSON = JSON.stringify(recipientsData);
+
+                // Save the updated JSON string back to local storage with the key "mobileNumbers"
+                localStorage.setItem("recipientsData1", updatedrecipientsDataJSON);
+
+                // Add your logic here to process the recipient's details
+                alert("Recipient details added successfully!");
+                location.href = "Overview.html";
+                // You can redirect or perform other actions as needed
+            }
+        }
+
+        // Attach the click event handler to the "Add" button
         var addRecipientButton = document.querySelector('.AddRecipient');
-        addRecipientButton.addEventListener('click', addRecipient);
+        addRecipientButton.addEventListener('click', handleAddButtonClick);
 
         var AddLocalBankButton = document.querySelector('.BankAcc');
         AddLocalBankButton.addEventListener('click', addLocalBank);

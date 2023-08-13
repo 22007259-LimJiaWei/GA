@@ -2,6 +2,15 @@
 <html>
 
 <head>
+    <!--
+        I declare that this code was written by me. 
+        I will not copy or allow others to copy my code. 
+        I understand that copying code is considered as plagiarism.
+        Student Name:Lim Jia Wei
+        Student ID: 22007259
+        Class: C369-3D-E63C-A
+        Date/Time Last modified: 13/08/2023 11:30 AM
+        -->
     <!--Bootstrap CSS Link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Home</title>
@@ -45,7 +54,7 @@
             text-align: center;
             vertical-align: middle;
             font-size: 14px;
-            color: black;
+            color: rgb(0, 0, 0);
             width: 15%;
             height: 200px;
             margin-left: 300px;
@@ -62,7 +71,7 @@
             text-align: center;
             vertical-align: middle;
             font-size: 14px;
-            color: black;
+            color: rgb(0, 0, 0);
             width: 15%;
             height: 200px;
             margin-left: 700px;
@@ -79,29 +88,39 @@
             text-align: center;
             vertical-align: middle;
             font-size: 14px;
-            color: white;
+            color: rgb(0, 0, 0);
             width: 15%;
             height: 200px;
             margin-left: 1100px;
             margin-top: 200px;
             float: right;
             position: absolute;
-            background-image: url(C369_GA_Image/GA4.jpg);
+            background-image: url(C369_GA_Image/Transfer.jpg);
             background-repeat: no-repeat;
             background-attachment: inherit;
             background-size: cover;
         }
 
-        .overview{
+        .overview {
             padding: 0;
             background-color: #aca3a3;
             position: absolute;
             width: 100%;
-            margin-top: 50px;  
-            height: 30px;  
+            margin-top: 50px;
+            height: 30px;
             list-style-type: none;
         }
 
+        .about-section {
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            height: 15%;
+            width: 20%;
+        }
     </style>
 </head>
 
@@ -110,90 +129,93 @@
         <li style="font-size: 35px; color: blue; margin-left: 10px;">JWD</li>
         <li style="margin-left: 10px; "><a style="padding: 14px 16px;" class="active" href=Home.html>Home</a></li>
         <li><a style="padding: 14px 16px;" href=AfterContact.html>Contact Us</a></li>
-        <li style="float: right; margin-right: 10px; background-color: red;"><a style="padding: 14px 16px;" href=Home.html>Logout</a></li>
+        <li style="float: right; margin-right: 10px; background-color: red;"><a style="padding: 14px 16px;"
+                href=Home.html>Logout</a></li>
     </ul>
     <div class="overview">
-        <a style="float: left; margin-left: 10px; border-left:none;"  href=Overview.html>My Account</a>
-        <a style="float: left; margin-left: 10px; border-left:none;"  href=Transfer.html>Transfer</a>
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Overview.html>My Account</a>
+        <a style="float: left; margin-left: 10px; border-left:none;" href=Transfer.html>Transfer</a>
     </div>
 
     <article>
         <div class="Plan">
+            <p style="font-weight: bold; text-decoration: underline;">Trusted bank Partners</p>
+            Our Bank is dedicated to empowering individuals and
+            businesses with top-notch banking solutions. we strive to be your trusted partner on your journey to
+            financial success.
+
+        </div>
+
+        <div class="Responsible">
             <p style="font-weight: bold; text-decoration: underline;">Sustainability at JWD</p>
             While there are many environmental challenges ahead, we have chosen to prioritise action on climate change
             given the urgency and how it is interrelated with other environmental and societal concerns.
         </div>
 
-        <div class="Responsible">
-            <p style="font-weight: bold; text-decoration: underline;">Sustainability at JWD</p>
-            We constantly seek to innovate and be thoughtful around our sustainability agenda to create a healthy
-            planet, while ensuring a just transition.
-        </div>
-
         <div class="Beyond">
-            <p style="font-weight: bold; text-decoration: underline;">Sustainability at JWD</p>
-            Together, we can create impact, improve lives and enable change.
-
-            To further address social and environmental issues, we have committed an additional SGD 100 million in 2022
-            to further our efforts in improving lives in Asia.
+            <p style="font-weight: bold; text-decoration: underline;">Flexible Transfer</p>
+            Seamlessly move your money wherever and whenever you need to, with user-friendly online transfers,
+            competitive rates, and minimal fees.
+            Our reliable platform ensures your funds reach their destination securely and swiftly.
         </div>
 
         <img src="C369_GA_Image/GA5.png" style="position: static; width: 1140pt; height: 400pt;">
     </article>
 
     <article>
-        <h2>My Colourful life</h2>
-        <img src="images/equalizer.png" />
-
-        <p>
-            "My Colourful Life" is a captivating and uplifting song that takes listeners on a vibrant journey
-            through the
-            myriad of emotions and experiences that shape one's existence. With its infectious melodies and
-            heartfelt
-            lyrics, this imaginative composition celebrates the tapestry of life's moments, both big and small, that
-            add
-            splashes of color to our everyday existence.
-
-        </p>
+        <section class="about-section">
+            <h2>Welcome to Our Bank</h2>
+            <p>We are a trusted financial institution dedicated to providing top-notch banking services to our
+                customers.</p>
+            <p>Our mission is to empower individuals and businesses with the financial tools they need to thrive.</p>
+        </section>
     </article>
 
     <article>
-        <h2>Good Ole Days</h2>
-        <img src="images/music.jpg" />
+        <section class="about-section">
+            <h2>Our Path to Net Zero</h2>
+            <img src="C369_GA_Image/GA13.jpg" />
 
-        <p>
-            "Good Ole Days" is a nostalgic and heartwarming song that takes listeners on a sentimental journey back
-            in time.
-            With its soulful melodies and evocative lyrics, this heartfelt composition captures the essence of
-            cherished
-            memories and the longing for simpler times.
+            <p>
+                Addressing climate change requires collective efforts.
 
-        </p>
+                To cement our net zero commitment we have established the very first set of targets for our Scope 3
+                financed
+                emissions attributable to us as a bank. These targets will guide us on strategically channelling
+                financing
+                away from high-emitting activities towards low-carbon alternatives.
+
+                They also represent one of the most comprehensive sets of targets in the global banking industry thus
+                far.
+
+            </p>
+        </section>
     </article>
 
     <article>
-        <h2>Guitar's my soul</h2>
-        <img src="images/guitars.jpg" />
+        <section class="about-section">
+            <h2>At a Glance</h2>
+            
 
-        <p>
-            Whether it's the gentle strumming of acoustic chords or the blazing fury of electric solos, "Guitar's My
-            Soul"
-            stands as a testament to the profound bond between musician and their trusted six-string companion. It
-            celebrates the eternal flame that burns within every artist's heart, fueled by the timeless power of
-            music.
+            <p>
+                No matter where you need to send your money to, make it a smooth journey with JWD Remit or Outward Telegraphic Transfer.
 
-        </p>
+            </p>
+        </section>
     </article>
 
     <footer>
         <a href="https://www.youtube.com/">
-            <img src="C369_GA_Image/youtube.jpg" style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+            <img src="C369_GA_Image/youtube.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
         </a>
         <a href="https://www.facebook.com/">
-           <img src="C369_GA_Image/facebook.jpg" style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+            <img src="C369_GA_Image/facebook.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
         </a>
         <a href="https://www.linkedin.com/feed/">
-           <img src="C369_GA_Image/linked.jpg" style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
+            <img src="C369_GA_Image/linked.jpg"
+                style="width: 2%; height: 2%; float: right; margin-right: 10px; margin-top: 10px;">
         </a>
     </footer>
     <!--Bootstrap JS Link-->

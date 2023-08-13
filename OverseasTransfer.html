@@ -2,6 +2,15 @@
 <html>
 
 <head>
+    <!--
+        I declare that this code was written by me. 
+        I will not copy or allow others to copy my code. 
+        I understand that copying code is considered as plagiarism.
+        Student Name:Lim Jia Wei
+        Student ID: 22007259
+        Class: C369-3D-E63C-A
+        Date/Time Last modified: 13/08/2023 11:30 AM
+        -->
     <!--Bootstrap CSS Link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Transfer</title>
@@ -213,8 +222,6 @@
 
         // Function to get the country rate based on the selected country
         function getCountryRate(country) {
-            // You can implement your logic here to fetch the exchange rate based on the selected country.
-            // For this example, we'll use some predefined rates.
             var countryRates = {
                 Malaysia: 3.44,
                 China: 5.0,
@@ -223,9 +230,9 @@
             return countryRates[country] || 1; // Default rate is 1 if the country rate is not found.
         }
 
-        // Function to calculate the transfer fee (you can adjust the calculation logic as needed)
+        // Function to calculate the transfer fee
         function calculateTransferFee(amount) {
-            // For this example, let's assume the transfer fee is 2% of the send amount.
+            // For this example, assume the transfer fee is 2% of the send amount.
             return amount * 0.02;
         }
 
